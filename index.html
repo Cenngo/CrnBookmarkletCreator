@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100&display=swap" rel="stylesheet">
+    <title>CRN Bookmarklet Creator</title>
+    <style>
+        h2 {
+            text-align: left;
+            font-family: 'Roboto Slab', serif;
+            color: white;
+            font-weight: 100;
+        }
+        body {
+            background-color: #121212;
+            overflow-x: hidden;
+        }
+        label{
+            color: white;
+            font-family: 'Roboto Slab', serif;
+        }
+        .wrapper{
+            flex-wrap: wrap;
+            align-content: center;
+            width: 40%;
+            margin: auto;
+        }
+        .crn_box{
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 2vh;
+            height: 5vh;
+            width: 90%;
+            font-family: 'Roboto Slab', serif;
+            text-align: center;
+            font-size: 20px;
+            background-color: #3a393b;
+            color: white;
+            border: none;
+            float: none;
+        }
+        #button{
+            width: 5vw;
+            color: white;
+            text-decoration: none;
+            background-color: dodgerblue;
+            font-family: 'Roboto Slab', serif;
+            padding: 1vw;
+            border-radius: 2vw;
+            margin-top: 10vh;
+            text-align: center;
+            margin-left: 47.5vw;
+        }
+        #create{
+            width: 10vw;
+            margin-left: 45vw;
+            margin-right: 45vw;
+            background-color: indigo;
+            color: white;
+            border: none;
+            height: 5vh;
+        }
+    </style>
+    <script type="text/javascript">
+        function f() {
+            var crn_boxes = document.getElementsByClassName("crn_box");
+            var crns = [];
+            Array.from(crn_boxes).forEach((box) => {
+               if(box.value != "")
+                   crns.push(box.value);
+            });
+            let arrString = crns.join(',')
+            let bookmark = document.getElementById("button");
+            bookmark.setAttribute("href", `javascript:(function()%7Bcrns %3D %5B${arrString}%5D%3Bfor(i %3D 0%3B i < crns.length%3B i%2B%2B)%7Bdocument.getElementById(%60crn_id%24%7Bi%2B1%7D%60).value %3D crns%5Bi%5D%3B%7D%7D)()`);
+            bookmark.style.visibility = "visible";
+        }
+    </script>
+</head>
+<body>
+    <h2>CRN Bookmarklet Creator</h2>
+    <div class="wrapper">
+        <ul id="crn_list" style="list-style-type: none;">
+            <li>
+                <input type="text" class="crn_box">
+            </li>
+            <li>
+                <input type="text" class="crn_box">
+            </li>
+            <li>
+                <input type="text" class="crn_box">
+            </li>
+            <li>
+                <input type="text" class="crn_box">
+            </li>
+            <li>
+                <input type="text" class="crn_box">
+            </li>
+            <li>
+                <input type="text" class="crn_box">
+            </li>
+            <li>
+                <input type="text" class="crn_box">
+            </li>
+            <li>
+                <input type="text" class="crn_box">
+            </li>
+            <li>
+                <input type="text" class="crn_box">
+            </li>
+            <li>
+                <input type="text" class="crn_box">
+            </li>
+        </ul>
+    </div>
+    <button onclick="f()" id="create">Create</button>
+    <div style="margin-top: 5vh">
+        <a id="button" href="#">Test Me</a>
+    </div>
+</body>
+</html>
